@@ -1,0 +1,80 @@
+body{
+    width:960px;
+    margin:0 auto;
+    font-family: 'Montserrat', sans-serif;
+    padding:10px;
+}
+
+#main{
+    height:760px;
+    width:960px;
+    background-color: lightgray;
+    opacity: 0.7;
+    border:1px silver solid;
+    box-shadow: 1px 2px silver;
+}
+
+#submain{
+    height:640px;
+    width:959px;
+    background-color: white;
+    border:1px black solid;
+    box-shadow: 1px 2px silver;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+#tblinfo{
+    width:700px;
+}
+
+#tblinfo th{
+    font-size:20px;
+}
+
+#tblinfo
+th, td {
+    width: 100px;
+    overflow: hidden;
+    padding:10px;
+    vertical-align: top;
+}
+
+#tblinfo
+th,
+td:nth-child(1){
+    border-right: 1px silver dashed;
+}
+
+.clsfieldset{
+    width:100%;
+}
+
+.clslabel{
+    text-align: left;
+    display:inline-block;
+    font-size:14px;
+    padding:4px;
+
+}
+
+.clsfeild{
+    width:300px;
+    display:inline-block;
+    font-size:small;
+}
+
+.clsbtn{
+    width:80px;
+    background-color: ghostwhite;
+    border-radius: 4px;
+    border:1px teal solid;
+    color:#73000d;
+}
+
+.clsbtn:hover{
+    background-color: #73000d;
+    color:ghostwhite;
+}
