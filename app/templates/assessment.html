@@ -137,27 +137,27 @@
                       <div class="form-group">
                            {{ form.loan_apr.label(class="text-info clslabel") }}
                            {% if form.loan_apr.errors %}
-                               {{ form.loan_apr(class="form-control form-control-sm clsfeild is-invalid") }}
+                               {{ form.loan_apr(class="selectpicker clsfeild is-invalid") }}
                                <div class="invalid-feedback">
                                {% for error in form.loan_apr.errors %}
                                    <span>{{ error }}</span>
                                {% endfor %}
                                </div>
                            {% else %}
-                               {{ form.loan_apr(class="form-control form-control-sm clsfeild") }}
+                               {{ form.loan_apr(class="selectpicker clsfeild") }}
                            {% endif %}
                       </div>
                       <div class="form-group">
                            {{ form.loan_term.label(class="text-info clslabel") }}
                            {% if form.loan_term.errors %}
-                               {{ form.loan_term(class="form-control form-control-sm clsfeild is-invalid") }}
+                               {{ form.loan_term(class="selectpicker clsfeild is-invalid") }}
                                <div class="invalid-feedback">
                                {% for error in form.loan_term.errors %}
                                    <span>{{ error }}</span>
                                {% endfor %}
                                </div>
                            {% else %}
-                               {{ form.loan_term(class="form-control form-control-sm clsfeild") }}
+                               {{ form.loan_term(class="selectpicker clsfeild") }}
                            {% endif %}
                       </div>
                    </fieldset>

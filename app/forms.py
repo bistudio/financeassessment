@@ -43,8 +43,12 @@ class AssessmentForm(FlaskForm):
     lender = StringField('Lender', validators=[DataRequired()])
     loan_reason = SelectField('Reason for Loan', validators=[DataRequired()]
                                   , choices=loan_reason_choices, default=loan_reason_choices[0])
-    loan_term = IntegerField('Loan Term', validators=[DataRequired()])
-    loan_apr = FloatField('% APR', validators=[DataRequired()])
+    loan_term = SelectField('Loan Term (mths)', validators=[DataRequired()], choices=[(None, 'Select')
+        , ('12', 12), ('18', 18), ('24', 24), ('36', 36), ('48', 48), ('60', 60), ('72', 72)])
+    loan_apr = SelectField('% APR', validators=[DataRequired()], choices=[('0', '0.0%'), ('1', '1.9%'), ('2', '2.5%')
+        , ('3', '2.9%'), ('4', '3.5%'), ('5', '5.9%'), ('6', '6.9%')
+        , ('7', '9.9%'), ('8', '12.9%'), ('9', '13.9%'), ('10', '14.8%')
+        , ('11', '16.9%'), ('12', '19.9%'), ('13', '28.9%'), ('14', '38.9%')])
     loan_amount = IntegerField('Loan Amount £', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
