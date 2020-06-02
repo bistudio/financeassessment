@@ -1,4 +1,7 @@
 {% extends 'layout.html' %}
 {% block content %}
  <h1>Finance Assessment</h1>
+    <div>
+         <h2><a class="article-title" href="{{ url_for('assessment', assessment_id=assessment.id) }}"></a></h2>
+    </div>
 {% endblock content %}

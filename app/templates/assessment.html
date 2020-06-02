@@ -137,14 +137,14 @@
                       <div class="form-group">
                            {{ form.loan_apr.label(class="text-info clslabel") }}
                            {% if form.loan_apr.errors %}
-                               {{ form.loan_apr(class="selectpicker clsfeild is-invalid") }}
+                               {{ form.loan_apr(class="clsfeild is-invalid", type="number", step=0.05,  value=2.50)}}
                                <div class="invalid-feedback">
                                {% for error in form.loan_apr.errors %}
                                    <span>{{ error }}</span>
                                {% endfor %}
                                </div>
                            {% else %}
-                               {{ form.loan_apr(class="selectpicker clsfeild") }}
+                               {{ form.loan_apr(class="clsfeild", type="number", step=0.05,  value=2.50)}}
                            {% endif %}
                       </div>
                       <div class="form-group">

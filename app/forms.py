@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SelectField, SubmitField, IntegerField, FloatField
-from wtforms.validators import DataRequired
+from wtforms import StringField, SelectField, SubmitField, IntegerField, FloatField, DecimalField
+from wtforms.fields.html5 import DecimalRangeField
+from wtforms.validators import DataRequired, NumberRange
 
 
 age_band_choices = [(None, 'Select'), ('0', '16 - 25'), ('1', '26 - 39'), ('2', '40 - 49')
@@ -29,6 +30,8 @@ for k in range(len(country_list)):
 loan_reason_choices = [(None, 'Select'), ('0', 'Debt Consolidation'), ('1', 'Car Purchase'), ('2', 'Home Improvements'),
                        ('3', 'Investment'), ('4', 'Personal Development'),
                        ('5', 'Holiday , Travel & Excursion'), ('6', 'Other Purchase')]
+loan_term_choices = [(None, 'Select')
+        , ('12', 12), ('18', 18), ('24', 24), ('36', 36), ('48', 48), ('60', 60), ('72', 72), ('84', 84)]
 
 
 class AssessmentForm(FlaskForm):
@@ -37,30 +40,27 @@ class AssessmentForm(FlaskForm):
     job_security = SelectField('Job Security', validators=[DataRequired()]
                                , choices=job_security_choices, default=job_security_choices[0])
     country = SelectField('Country', validators=[DataRequired()], choices=country_choices, default=country_choices[0])
-    available_savings = IntegerField('Available Savings £', validators=[DataRequired()])
-    monthly_income = IntegerField('Monthly Income £', validators=[DataRequired()])
-    monthly_expenses = IntegerField('Monthly Expenses £', validators=[DataRequired()])
+    available_savings = DecimalField('Available Savings £', validators=[DataRequired()])
+    monthly_income = DecimalField('Monthly Income £', validators=[DataRequired()])
+    monthly_expenses = DecimalField('Monthly Expenses £', validators=[DataRequired()])
     lender = StringField('Lender', validators=[DataRequired()])
     loan_reason = SelectField('Reason for Loan', validators=[DataRequired()]
                                   , choices=loan_reason_choices, default=loan_reason_choices[0])
-    loan_term = SelectField('Loan Term (mths)', validators=[DataRequired()], choices=[(None, 'Select')
-        , ('12', 12), ('18', 18), ('24', 24), ('36', 36), ('48', 48), ('60', 60), ('72', 72)])
-    loan_apr = SelectField('% APR', validators=[DataRequired()], choices=[('0', '0.0%'), ('1', '1.9%'), ('2', '2.5%')
-        , ('3', '2.9%'), ('4', '3.5%'), ('5', '5.9%'), ('6', '6.9%')
-        , ('7', '9.9%'), ('8', '12.9%'), ('9', '13.9%'), ('10', '14.8%')
-        , ('11', '16.9%'), ('12', '19.9%'), ('13', '28.9%'), ('14', '38.9%')])
-    loan_amount = IntegerField('Loan Amount £', validators=[DataRequired()])
+    loan_apr = DecimalRangeField('% Apr', places=2, validators=[DataRequired(), NumberRange(min=0.05, max=45.0)])
+    loan_term = SelectField('Loan Term (mths)', validators=[DataRequired()]
+                            , choices=loan_term_choices, default=loan_term_choices[0])
+    loan_amount = DecimalField('Loan Amount £', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
 
 class SummaryForm(FlaskForm):
     no_of_payments = IntegerField('Number of Payments', validators=[DataRequired()])
-    monthly_capital_repayments = IntegerField('Monthly Capital Repayments £', validators=[DataRequired()])
-    monthly_interest_repayments = IntegerField('Monthly Interest Repayments £', validators=[DataRequired()])
-    monthly_repayments = IntegerField('Monthly Repayments £', validators=[DataRequired()])
-    total_amount_payable = IntegerField('Total Amount Payable (incl. interest) £', validators=[DataRequired()])
-    total_capital_payable = IntegerField('Total Capital Payable (excl. interest) £', validators=[DataRequired()])
-    total_interest_payable = IntegerField('Total Interest Payable £', validators=[DataRequired()])
-    new_monthly_expenses = IntegerField('New Monthly Expenses £', validators=[DataRequired()])
-    new_monthly_surplus = IntegerField('New Monthly Surplus £', validators=[DataRequired()])
+    monthly_capital_repayments = DecimalField('Monthly Capital Repayments £', validators=[DataRequired()])
+    monthly_interest_repayments = DecimalField('Monthly Interest Repayments £', validators=[DataRequired()])
+    monthly_repayments = DecimalField('Monthly Repayments £', validators=[DataRequired()])
+    total_amount_payable = DecimalField('Total Amount Payable (incl. interest) £', validators=[DataRequired()])
+    total_capital_payable = DecimalField('Total Capital Payable (excl. interest) £', validators=[DataRequired()])
+    total_interest_payable = DecimalField('Total Cost of Loan £', validators=[DataRequired()])
+    new_monthly_expenses = DecimalField('New Monthly Expenses £', validators=[DataRequired()])
+    new_monthly_surplus = DecimalField('New Monthly Surplus £', validators=[DataRequired()])
     submit = SubmitField('Download')

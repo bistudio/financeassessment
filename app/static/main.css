@@ -78,3 +78,9 @@ td:nth-child(1){
     background-color: #73000d;
     color:ghostwhite;
 }
+
+.incBtn, .decBtn{
+    border:none;
+    background-color: transparent;
+    cursor: pointer;
+}
