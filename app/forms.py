@@ -10,7 +10,7 @@ age_band_choices = [(None, 'Select'), ('0', '16 - 25'), ('1', '26 - 39'), ('2', 
 job_security_choices = [(None, 'Select')
     , ('0', 'Uneasy / Starting Out'), ('1', 'Unsure'), ('2', 'Stable'), ('3', 'Good'), ('4', 'Very secure')]
 
-country_choices = [(None, 'Select')]
+country_choices = [('UK', 'United Kingdom')]
 country_id = []
 country = []
 

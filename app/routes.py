@@ -34,6 +34,35 @@ def assessment():
             (form.loan_amount.data * (rate)) / (1 - (1 + (rate)) ** (-1 * int(form.loan_term.data))), 2)
         initial_month_interest = round(form.loan_amount.data * rate, 2)
         initial_month_capital = round(monthly_repayments - initial_month_interest, 2)
+
+        def loan_reason_score(i):
+            switcher = {
+                '0': 3
+                , '1': 2.5
+                , '2': 3
+                , '3': 2
+                , '4': 4
+                , '5': 3
+                , '6': 2.5
+            }
+            return switcher.get(i, 0)
+
+        def loan_term_score(d, i):
+            if int(d) < 37:
+                i = '0'  # 2
+            elif int(d) < 73:
+                i = '1'  # 3.5
+            else:
+                i = '2'  # 2
+            switcher = {
+                '0': 2
+                , '1': 3.5
+                , '2': 2
+
+            }
+
+            return switcher.get(i, 0)
+
         details = Assessment(age_band=form.age_band.data
                              , job_security=form.job_security.data
                              , country=form.country.data
@@ -54,7 +83,10 @@ def assessment():
                              , new_monthly_expenses=form.monthly_expenses.data + monthly_repayments
                              , new_monthly_surplus=0.00
                              , total_capital_payable=initial_month_capital * int(form.loan_term.data)
+                             , loan_reason_score=loan_reason_score(form.loan_reason.data)
+                             , loan_term_score=loan_term_score(form.loan_term.data, 0)
                              )
+
         db.session.add(details)
         db.session.commit()
         assessment_id = details.id
