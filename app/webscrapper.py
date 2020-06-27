@@ -56,11 +56,3 @@ def loan_inc():
 while loan_term < 61:
     loan_inc()
     loan_term += 12
-
-
-#  Loan Amount Loan Term  "Company":'AA', "loanName":'Member', "RepresentativeAPR":14.3  Date Extrated from Moneyfact
-
-
-# Company":(["'])(?:(?=(\\?))\2.)*?\1
-# "LoanName":(["'])(?:(?=(\\?))\2.)*?\1
-# "RepresentativeAPR":\d*\d*\.\d*\d*
