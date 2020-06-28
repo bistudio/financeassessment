@@ -41,9 +41,9 @@ def loan_inc():
                     for c_match in company_matches:
                         for p_match in product_matches:
                             for r_match in rep_apr_matches:
-                                f.writelines(f'{loan_term}, {loan_amount}, "{c_match}"'
-                                             f', "{p_match}", {r_match}, {date_extracted}'+"\n")
-                                # print(f'{loan_term}, {loan_amount}, "{c_match}", "{p_match}",{r_match}'
+                                f.writelines(f'{loan_term}, {loan_amount}, {c_match}'
+                                             f', {p_match}, {r_match}, {date_extracted}'+"\n")
+                                # print(f'{loan_term}, {loan_amount}, {c_match}, {p_match},{r_match}'
                                 #       f',{date_extracted}')
                 a += 2
                 b += 2
