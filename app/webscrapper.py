@@ -27,7 +27,6 @@ def loan_inc():
         matches_position = [match.start() for match in matches]
         a = 0
         b = 1
-        j = 0
         for i in matches_position:
             if b < len(matches_position):
                 with open('historical_average_apr.csv', 'a') as f:
@@ -38,12 +37,12 @@ def loan_inc():
                     product_matches = re.findall(product_pattern, search_string)
                     rep_apr_pattern = re.compile(r'"RepresentativeAPR":\d*\d*\.\d*\d*')
                     rep_apr_matches = re.findall(rep_apr_pattern, search_string)
-                    header = ['Loan Term', 'Loan Amount', 'Loan Provider', 'Loan Product', 'Representative APR', 'Date Extracted']
                     date_extracted = dt.utcnow().strftime("%Y-%m-%d %H:%M:%S")
                     for c_match in company_matches:
                         for p_match in product_matches:
                             for r_match in rep_apr_matches:
-                                f.writelines(f'{loan_term}, {loan_amount}, "{c_match}", "{p_match}", {r_match}, {date_extracted}'+"\n")
+                                f.writelines(f'{loan_term}, {loan_amount}, "{c_match}"'
+                                             f', "{p_match}", {r_match}, {date_extracted}'+"\n")
                                 # print(f'{loan_term}, {loan_amount}, "{c_match}", "{p_match}",{r_match}'
                                 #       f',{date_extracted}')
                 a += 2
