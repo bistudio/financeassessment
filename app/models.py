@@ -71,6 +71,7 @@ class Assessment(db.Model):
     new_monthly_surplus = db.Column(Numeric(18, 2), nullable=False)
     loan_reason_score = db.Column(db.Float(asdecimal=True, precision=2, decimal_return_scale=2), nullable=False)
     loan_term_score = db.Column(db.Float(asdecimal=True, precision=2, decimal_return_scale=2), nullable=False)
+    final_decision = db.Column(db.String(6), nullable=True)
     lender_id = db.Column(db.Integer, db.ForeignKey('lenders.id'), nullable=False)
     # providers = db.relationship('Lenders', backref='assessment', lazy=True)
     assessment_datetime = db.Column(db.DATETIME, nullable=False, default=dt.utcnow)
@@ -91,7 +92,7 @@ class Assessment(db.Model):
                f",'{self.loan_term_score}'"
 
 
-class HistoricalAprRates(db.Model):
+class STGMFHistoricalAprRates(db.Model):
     __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     loan_term = db.Column(db.SMALLINT, nullable=False)
@@ -113,7 +114,7 @@ class HistoricalAprRates(db.Model):
         self.date_extracted = date_extracted
 
     def __str__(self):
-        return 'HistoricalAprRates(id=' + str(self.id) + ', lender=' + self.lender + ')'
+        return 'MoneyFactsAprRates(id=' + str(self.id) + ', lender=' + self.lender + ')'
 
     def __repr__(self):
         return f'"{self.loan_provider}", {self.loan_term}' \

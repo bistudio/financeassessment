@@ -1,4 +1,4 @@
-from flask import render_template, redirect, request, url_for, flash
+from flask import render_template, redirect, request, url_for, flash, json
 from app.forms import AssessmentForm, SummaryForm
 from app import app, db
 from app.models import Assessment
@@ -78,5 +78,8 @@ def assessment():
             assessment_record_id = details.id
             flash('Thank you for completing the assessment', 'success')
             assessment_data = Assessment.query.get_or_404(assessment_record_id)
-            return render_template('summary.html', title='Assessment Summary', assessment=assessment_data)
+            form = SummaryForm()
+            if form.validate_on_submit():
+                pass
+            return render_template('summary.html', title='Assessment Summary', assessment=assessment_data, form=form)
     return render_template('assessment.html', title='Assessment', form=form)

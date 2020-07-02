@@ -1,5 +1,13 @@
 {% extends 'layout.html' %}
 {% block content %}
  <h1>Finance Assessment</h1>
+    <div id="stock_image_holder">
+        <div id="pic_1"><img src={{ url_for('static', filename='/images/graph_on_stock_market_1.jpg') }}></div>
+        <div id="pic_2"><img src={{ url_for('static', filename='/images/black_calculator_1.jpg') }}></div>
+        <div id="pic_3"><img src={{ url_for('static', filename='/images/antique_coins_1.jpg') }}></div>
+        <div id="pic_4"><img src={{ url_for('static', filename='/images/chart_dashboard_1.jpg') }}></div>
+        <div id="pic_5"><img src={{ url_for('static', filename='/images/silver_and_gold_coins_1.jpg') }}></div>
+        <div id="pic_6"><img src={{ url_for('static', filename='/images/birds_eyeview_buildings_1.jpg') }}></div>
+    </div>
     <a href={{ url_for('assessment') }}>Start an assessment</a>
 {% endblock content %}

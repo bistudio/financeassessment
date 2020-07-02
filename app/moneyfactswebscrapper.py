@@ -8,7 +8,7 @@ import csv
 # create file with column headers
 
 header = ['Loan Term', 'Loan Amount', 'Loan Provider', 'Loan Product', 'Average APR', 'Source', 'Date Extracted']
-with open('historical_average_apr.csv', 'w', newline='') as f:
+with open('mf_average_apr_rates.csv', 'w', newline='') as f:
     csv_writer = csv.DictWriter(f, fieldnames=header)
     csv_writer.writeheader()
 
@@ -36,7 +36,7 @@ def loan_inc():
         b = 1
         for i in matches_position:
             if b < len(matches_position):
-                with open('historical_average_apr.csv', 'a') as f:
+                with open('mf_average_apr_rates.csv', 'a') as f:
                     search_string = html_string[matches_position[a]:matches_position[b]]
                     company_pattern = re.compile(r'^Company":\"(.+?)\"')
                     company_matches = re.findall(company_pattern, search_string)
@@ -51,9 +51,11 @@ def loan_inc():
                                 rate = str(r_match).replace('"RepresentativeAPR":', '')
                                 product = str(p_match).replace(',', ' -')
                                 source = 'Moneyfacts'
-                                f.writelines(f'{loan_term}, {loan_amount}, {c_match}'
+                                loan_provider = " ".join([company.capitalize() if len(c_match.split(" ")) > 1
+                                                          else c_match.upper() for company in c_match.split(" ")])
+                                f.writelines(f'{loan_term}, {loan_amount}, {loan_provider}'
                                              f', {product}, {rate}, {source}, {date_extracted}'+"\n")
-                                # print(f'{loan_term}, {loan_amount}, {c_match}, {product},{rate}, {source}'
+                                # print(f'{loan_term}, {loan_amount}, {loan_provider}, {product},{rate}, {source}'
                                 #       f',{date_extracted}')
 
                 a += 2

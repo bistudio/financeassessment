@@ -34,6 +34,8 @@ loan_reason_choices = [(None, 'Select'), ('0', 'Debt Consolidation'), ('1', 'Car
 loan_term_choices = [(None, 'Select')
     , ('12', 12), ('18', 18), ('24', 24), ('36', 36), ('48', 48), ('60', 60), ('72', 72), ('84', 84)]
 
+yes_no_choices = [(None, 'Select'), ('0', 'No'), ('1', 'Yes'), ('2', 'Maybe')]
+
 
 def lender_choices_query():
     from app.models import Lenders
@@ -46,9 +48,9 @@ class AssessmentForm(FlaskForm):
     job_security = SelectField('Job Security', validators=[DataRequired()]
                                , choices=job_security_choices, default=job_security_choices[0])
     country = SelectField('Country', validators=[DataRequired()], choices=country_choices, default=country_choices[0])
-    available_savings = DecimalField('Available Savings £', validators=[DataRequired()])
-    monthly_income = DecimalField('Monthly Income £', validators=[DataRequired()])
-    monthly_expenses = DecimalField('Monthly Expenses £', validators=[DataRequired()])
+    available_savings = DecimalField('Available Savings £', validators=[DataRequired(), NumberRange()])
+    monthly_income = DecimalField('Monthly Income £', validators=[DataRequired(), NumberRange()])
+    monthly_expenses = DecimalField('Monthly Expenses £', validators=[DataRequired(), NumberRange()])
     lender = QuerySelectField('Lender', query_factory=lender_choices_query
                               , validators=[DataRequired()], allow_blank=True, blank_text='Select', get_label='lender')
     loan_reason = SelectField('Reason for Loan', validators=[DataRequired()]
@@ -56,18 +58,21 @@ class AssessmentForm(FlaskForm):
     loan_apr = DecimalRangeField('% Apr', places=2, validators=[DataRequired(), NumberRange(min=0.05, max=45.0)])
     loan_term = SelectField('Loan Term (mths)', validators=[DataRequired()]
                             , choices=loan_term_choices, default=loan_term_choices[0])
-    loan_amount = DecimalField('Loan Amount £', validators=[DataRequired()])
+    loan_amount = DecimalRangeField('Loan Amount £', places=2, validators=[DataRequired()
+        ,  NumberRange(min=1000.00, max=30000.00)])
     submit = SubmitField('Submit')
 
 
 class SummaryForm(FlaskForm):
-    no_of_payments = IntegerField('Number of Payments', validators=[DataRequired()])
-    monthly_capital_repayments = DecimalField('Monthly Capital Repayments £', validators=[DataRequired()])
-    monthly_interest_repayments = DecimalField('Monthly Interest Repayments £', validators=[DataRequired()])
-    monthly_repayments = DecimalField('Monthly Repayments £', validators=[DataRequired()])
-    total_amount_payable = DecimalField('Total Amount Payable (incl. interest) £', validators=[DataRequired()])
-    total_capital_payable = DecimalField('Total Capital Payable (excl. interest) £', validators=[DataRequired()])
-    total_interest_payable = DecimalField('Total Cost of Loan £', validators=[DataRequired()])
-    new_monthly_expenses = DecimalField('New Monthly Expenses £', validators=[DataRequired()])
-    new_monthly_surplus = DecimalField('New Monthly Surplus £', validators=[DataRequired()])
+    # no_of_payments = IntegerField('Number of Payments', validators=[DataRequired()])
+    # monthly_capital_repayments = DecimalField('Monthly Capital Repayments £', validators=[DataRequired()])
+    # monthly_interest_repayments = DecimalField('Monthly Interest Repayments £', validators=[DataRequired()])
+    # monthly_repayments = DecimalField('Monthly Repayments £', validators=[DataRequired()])
+    # total_amount_payable = DecimalField('Total Amount Payable (incl. interest) £', validators=[DataRequired()])
+    # total_capital_payable = DecimalField('Total Capital Payable (excl. interest) £', validators=[DataRequired()])
+    # total_interest_payable = DecimalField('Total Cost of Loan £', validators=[DataRequired()])
+    # new_monthly_expenses = DecimalField('New Monthly Expenses £', validators=[DataRequired()])
+    # new_monthly_surplus = DecimalField('New Monthly Surplus £', validators=[DataRequired()])
+    proceed = SelectField('Do you want to proceed?', validators=[DataRequired()]
+                          , choices=yes_no_choices, default=yes_no_choices[0])
     submit = SubmitField('Download')

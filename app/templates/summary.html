@@ -4,170 +4,6 @@
 <div id="s_main">
    <div id="s_submain">
    <form method="POST" action="">
-{#   {{ form.hidden_tag() }}#}
-{#       <table id="tblsum" align="center">#}
-{#           <tr>#}
-{#               <th colspan="1">About You</th>#}
-{#               <th colspan="1">About the loan</th>#}
-{#           </tr>#}
-{#           <tr>#}
-{#               <td>#}
-{#                   <fieldset class="clsfeildset">#}
-{#                       <div class="form-group">#}
-{#                           {{ form.age_band.label(class="text-info") }}#}
-{#                           {% if form.age_band.errors %}#}
-{#                               {{ form.age_band(class="selectpicker clsfeild is-invalid") }}#}
-{#                               <div class="invalid-feedback">#}
-{#                               {% for error in form.age_band.errors %}#}
-{#                                   <span>{{ error }}</span>#}
-{#                               {% endfor %}#}
-{#                               </div>#}
-{#                           {% else %}#}
-{#                               {{ form.age_band(class="selectpicker clsfeild") }}#}
-{#                           {% endif %}#}
-{#                      </div>#}
-{#                      <div class="form-group">#}
-{#                           {{ form.country.label(class="text-info clslabel") }}#}
-{#                           {% if form.country.errors %}#}
-{#                               {{ form.country(class="selectpicker clsfeild is-invalid") }}#}
-{#                               <div class="invalid-feedback">#}
-{#                               {% for error in form.country.errors %}#}
-{#                                   <span>{{ error }}</span>#}
-{#                               {% endfor %}#}
-{#                               </div>#}
-{#                           {% else %}#}
-{#                               {{ form.country(class="selectpicker clsfeild") }}#}
-{#                           {% endif %}#}
-{#                      </div>#}
-{#                      <div class="form-group">#}
-{#                           {{ form.job_security.label(class="text-info clslabel") }}#}
-{#                           {% if form.job_security.errors %}#}
-{#                               {{ form.job_security(class="selectpicker clsfeild is-invalid") }}#}
-{#                               <div class="invalid-feedback">#}
-{#                               {% for error in form.job_security.errors %}#}
-{#                                   <span>{{ error }}</span>#}
-{#                               {% endfor %}#}
-{#                               </div>#}
-{#                           {% else %}#}
-{#                               {{ form.job_security(class="selectpicker clsfeild") }}#}
-{#                           {% endif %}#}
-{#                      </div>#}
-{#                      <div class="form-group">#}
-{#                           {{ form.available_savings.label(class="text-info clslabel") }}#}
-{#                           {% if form.available_savings.errors %}#}
-{#                               {{ form.available_savings(class="form-control form-control-sm clsfeild is-invalid") }}#}
-{#                               <div class="invalid-feedback">#}
-{#                               {% for error in form.available_savings.errors %}#}
-{#                                   <span>{{ error }}</span>#}
-{#                               {% endfor %}#}
-{#                               </div>#}
-{#                           {% else %}#}
-{#                               {{ form.available_savings(class="form-control form-control-sm clsfeild") }}#}
-{#                           {% endif %}#}
-{#                      </div>#}
-{#                      <div class="form-group">#}
-{#                           {{ form.monthly_income.label(class="text-info clslabel") }}#}
-{#                           {% if form.monthly_income.errors %}#}
-{#                               {{ form.monthly_income(class="form-control form-control-sm clsfeild is-invalid") }}#}
-{#                               <div class="invalid-feedback">#}
-{#                               {% for error in form.monthly_income.errors %}#}
-{#                                   <span>{{ error }}</span>#}
-{#                               {% endfor %}#}
-{#                               </div>#}
-{#                           {% else %}#}
-{#                               {{ form.monthly_income(class="form-control form-control-sm clsfeild") }}#}
-{#                           {% endif %}#}
-{#                      </div>#}
-{#                      <div class="form-group">#}
-{#                           {{ form.monthly_expenses.label(class="text-info clslabel") }}#}
-{#                           {% if form.monthly_expenses.errors %}#}
-{#                               {{ form.monthly_expenses(class="form-control form-control-sm clsfeild is-invalid") }}#}
-{#                               <div class="invalid-feedback">#}
-{#                               {% for error in form.monthly_expenses.errors %}#}
-{#                                   <span>{{ error }}</span>#}
-{#                               {% endfor %}#}
-{#                               </div>#}
-{#                           {% else %}#}
-{#                               {{ form.monthly_expenses(class="form-control form-control-sm clsfeild") }}#}
-{#                           {% endif %}#}
-{#                      </div>#}
-{#                   </fieldset>#}
-{#               </td>#}
-{#               <td>#}
-{#                   <fieldset class="clsfeildset">#}
-{#                       <div class="form-group">#}
-{#                           {{ form.lender.label(class="text-info clslabel") }}#}
-{#                           {% if form.lender.errors %}#}
-{#                               {{ form.lender(class="form-control form-control-sm clsfeild is-invalid") }}#}
-{#                               <div class="invalid-feedback">#}
-{#                               {% for error in form.lender.errors %}#}
-{#                                   <span>{{ error }}</span>#}
-{#                               {% endfor %}#}
-{#                               </div>#}
-{#                           {% else %}#}
-{#                               {{ form.lender(class="form-control form-control-sm clsfeild") }}#}
-{#                           {% endif %}#}
-{#                      </div>#}
-{#                      <div class="form-group">#}
-{#                           {{ form.loan_reason.label(class="text-info clslabel") }}#}
-{#                           {% if form.loan_reason.errors %}#}
-{#                               {{ form.loan_reason(class="selectpicker clsfeild is-invalid") }}#}
-{#                               <div class="invalid-feedback">#}
-{#                               {% for error in form.loan_reason.errors %}#}
-{#                                   <span>{{ error }}</span>#}
-{#                               {% endfor %}#}
-{#                               </div>#}
-{#                           {% else %}#}
-{#                               {{ form.loan_reason(class="selectpicker clsfeild") }}#}
-{#                           {% endif %}#}
-{#                      </div>#}
-{#                      <div class="form-group">#}
-{#                           {{ form.loan_amount.label(class="text-info clslabel") }}#}
-{#                           {% if form.loan_amount.errors %}#}
-{#                               {{ form.loan_amount(class="form-control form-control-sm clsfeild is-invalid") }}#}
-{#                               <div class="invalid-feedback">#}
-{#                               {% for error in form.loan_amount.errors %}#}
-{#                                   <span>{{ error }}</span>#}
-{#                               {% endfor %}#}
-{#                               </div>#}
-{#                           {% else %}#}
-{#                               {{ form.loan_amount(class="form-control form-control-sm clsfeild") }}#}
-{#                           {% endif %}#}
-{#                      </div>#}
-{#                      <div class="form-group">#}
-{#                           {{ form.loan_apr.label(class="text-info clslabel") }}#}
-{#                           {% if form.loan_apr.errors %}#}
-{#                               {{ form.loan_apr(class="form-control form-control-sm clsfeild is-invalid") }}#}
-{#                               <div class="invalid-feedback">#}
-{#                               {% for error in form.loan_apr.errors %}#}
-{#                                   <span>{{ error }}</span>#}
-{#                               {% endfor %}#}
-{#                               </div>#}
-{#                           {% else %}#}
-{#                               {{ form.loan_apr(class="form-control form-control-sm clsfeild") }}#}
-{#                           {% endif %}#}
-{#                      </div>#}
-{#                      <div class="form-group">#}
-{#                           {{ form.loan_term.label(class="text-info clslabel") }}#}
-{#                           {% if form.loan_term.errors %}#}
-{#                               {{ form.loan_term(class="form-control form-control-sm clsfeild is-invalid") }}#}
-{#                               <div class="invalid-feedback">#}
-{#                               {% for error in form.loan_term.errors %}#}
-{#                                   <span>{{ error }}</span>#}
-{#                               {% endfor %}#}
-{#                               </div>#}
-{#                           {% else %}#}
-{#                               {{ form.loan_term(class="form-control form-control-sm clsfeild") }}#}
-{#                           {% endif %}#}
-{#                      </div>#}
-{#                   </fieldset>#}
-{#                   <div class="btn inline-group">#}
-{#                       <input type="reset" value="Clear" class="btn border-rounded clsbtn">#}
-{#                       {{ form.submit(class="btn border-rounded clsbtn")}}#}
-{#                   </div>#}
-{#               </td>#}
-{#           </tr>#}
-{#       </table>#}
        <div class="form-group clsfeild">
            <label class="clslabel">Number of Payments</label>
            <input type="" readonly="readonly" value={{ assessment.loan_term }} class="form-control">
@@ -192,10 +28,23 @@
            <label class="clslabel">New Monthly Surplus £</label>
            <input type="" readonly="readonly" value={{ assessment.new_monthly_surplus }} class="form-control">
        </div>
+       <div class="form-group clsfeild">
+           {{ form.proceed.label(class="clslabel") }}
+           {% if form.proceed.errors %}
+               {{ form.proceed(class="selectpciker is-invalid") }}
+               <div class="invalid-feedback">
+               {% for error in form.proceed.errors %}
+                   <span>{{ error }}</span>
+               {% endfor %}
+               </div>
+           {% else %}
+               {{ form.proceed(class="selectpciker") }}
+           {% endif %}
+       </div>
    </form>
   </div>
 </div>
-   <div>
-       <a href={{ url_for('home') }}>Home</a>
-   </div>
+<div>
+   <a href={{ url_for('home') }}>Home</a>
+</div>
 {% endblock content %}

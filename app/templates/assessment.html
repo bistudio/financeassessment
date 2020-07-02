@@ -126,27 +126,27 @@
                       <div class="form-group">
                            {{ form.loan_amount.label(class="text-info clslabel") }}
                            {% if form.loan_amount.errors %}
-                               {{ form.loan_amount(class="form-control form-control-sm clsfeild is-invalid") }}
+                               {{ form.loan_amount(id="fmloanAmt", class="clsfeild", type="number", placeholder= 10000, min=1000, max=30000, step=1000.00,  value=10000.00, onKeyDown="return false") }}
                                <div class="invalid-feedback">
                                {% for error in form.loan_amount.errors %}
                                    <span>{{ error }}</span>
                                {% endfor %}
                                </div>
                            {% else %}
-                               {{ form.loan_amount(class="form-control form-control-sm clsfeild") }}
+                               {{ form.loan_amount(id="fmloanAmt", class="clsfeild", type="number", placeholder= 10000, min=1000, max=30000, step=1000.00,  value=10000.00, onKeyDown="return false") }}
                            {% endif %}
                       </div>
                       <div class="form-group">
                            {{ form.loan_apr.label(class="text-info clslabel") }}
                            {% if form.loan_apr.errors %}
-                               {{ form.loan_apr(class="clsfeild is-invalid", type="number", step=0.05,  value=2.50)}}
+                               {{ form.loan_apr(class="clsfeild is-invalid", type="number", placeholder=2.50, min=0.00, max=45.0, step=0.05,  value=2.50, onKeyDown="return false")}}
                                <div class="invalid-feedback">
                                {% for error in form.loan_apr.errors %}
                                    <span>{{ error }}</span>
                                {% endfor %}
                                </div>
                            {% else %}
-                               {{ form.loan_apr(class="clsfeild", type="number", step=0.05,  value=2.50)}}
+                               {{ form.loan_apr(class="clsfeild", type="number", placeholder=2.50, min=0.00, max=45.0, step=0.05,  value=2.50, onKeyDown="return false")}}
                            {% endif %}
                       </div>
                       <div class="form-group">
