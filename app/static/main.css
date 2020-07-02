@@ -84,3 +84,11 @@ td:nth-child(1){
     background-color: transparent;
     cursor: pointer;
 }
+
+.headerlink{
+    text-decoration: none;
+}
+
+.headerlink:hover {
+    text-decoration: none
+}

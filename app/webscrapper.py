@@ -1,9 +1,16 @@
 from bs4 import BeautifulSoup as bs
 import urllib.request as request
-import lxml
 import re
 from datetime import datetime as dt
 import csv
+
+
+# create file with column headers
+
+header = ['Loan Term', 'Loan Amount', 'Loan Provider', 'Loan Product', 'Average APR', 'Source', 'Date Extracted']
+with open('historical_average_apr.csv', 'w', newline='') as f:
+    csv_writer = csv.DictWriter(f, fieldnames=header)
+    csv_writer.writeheader()
 
 
 loan_term = 12
@@ -41,10 +48,14 @@ def loan_inc():
                     for c_match in company_matches:
                         for p_match in product_matches:
                             for r_match in rep_apr_matches:
+                                rate = str(r_match).replace('"RepresentativeAPR":', '')
+                                product = str(p_match).replace(',', ' -')
+                                source = 'Moneyfacts'
                                 f.writelines(f'{loan_term}, {loan_amount}, {c_match}'
-                                             f', {p_match}, {r_match}, {date_extracted}'+"\n")
-                                # print(f'{loan_term}, {loan_amount}, {c_match}, {p_match},{r_match}'
+                                             f', {product}, {rate}, {source}, {date_extracted}'+"\n")
+                                # print(f'{loan_term}, {loan_amount}, {c_match}, {product},{rate}, {source}'
                                 #       f',{date_extracted}')
+
                 a += 2
                 b += 2
             else:
